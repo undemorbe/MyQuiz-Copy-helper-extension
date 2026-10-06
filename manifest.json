@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "MyQuiz Copy Helper",
+  "version": "3.0",
+  "description": "Копирует текст вопроса и варианты ответов по Ctrl+Shift+D",
+  "permissions": ["clipboardWrite"],
+  "host_permissions": ["*://*.myquiz.ru/*", "*://myquiz.ru/*"],
+  "background": {
+    "service_worker": "background.js",
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.myquiz.ru/*", "*://myquiz.ru/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "commands": {
+    "copy-question": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+D",
+        "mac": "MacCtrl+Shift+D"
+      },
+      "description": "Скопировать вопрос и варианты ответов"
+    }
+  },
+  "action": {
+    "default_title": "Скопировать вопрос (Ctrl+Shift+D)",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
